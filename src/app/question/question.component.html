@@ -1,0 +1,47 @@
+<!--
+  Welcome to Tailwind Play, the official Tailwind CSS playground!
+
+  Everything here works just like it does when you're running Tailwind locally
+  with a real build pipeline. You can customize your config file, use features
+  like `@apply`, or even add third-party plugins.
+
+  Feel free to play with this example if you're just learning, or trash it and
+  start from scratch if you know enough to be dangerous. Have fun!
+-->
+<div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12 main">
+  <div  class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+  <div class="relative bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+    <iframe src="https://embed.lottiefiles.com/animation/101294"></iframe>
+    <div class="mx-auto max-w-md">
+      <div class="px-4  sm:px-6">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">{{question?.title}}</h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">{{question?.subtext}}</p>
+      </div>
+      <div class="divide-y px-4  sm:px-6 divide-gray-300/50">
+        <div class="space-y-6 py-8 text-base leading-7 text-gray-600">
+          <ul *ngIf="question?.type == 0">
+              <div class="flex items-center mb-4">
+                <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{question?.choices?.[0]?.title}}</label>
+              </div>
+              <div class="flex items-center">
+                <input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{question?.choices?.[1]?.title}}</label>
+              </div>
+          </ul>
+          <div *ngIf="question?.type != 0">
+            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="200" required>
+          </div>
+            <p *ngIf="question?.footer">{{question?.footer}}</p>
+        </div>
+        <div class="pt-8 text-base font-semibold leading-7">
+          <p>
+            <a class="text-sky-500 hover:text-sky-600" *ngIf="question?.index != 0" (click)="SubmitQ(false)">← Previous    </a>
+            <a class="text-sky-500 hover:text-sky-600" *ngIf="question?.index != maxCount" (click)="SubmitQ(true)">Next &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
